@@ -30,96 +30,144 @@ class Triangle {
         driver.close();
     }
 
+    /**
+     * Проверка определения равнобедренного треугольника
+     */
     @Test
     void isIsoscelesTriangle(){
         String triangleType = getTriangleType(driver, "3", "3", "4");
         Assertions.assertEquals(isoscelesType, triangleType);
     }
 
+    /**
+     * Проверка определения равностороннего треугольника
+     */
     @Test
     void isEqualsidedTriangle(){
         String triangleType = getTriangleType(driver, "3", "3", "3");
         Assertions.assertEquals(equalsidedType, triangleType);
     }
 
+    /**
+     * Проверка определения прямоугольного треугольника
+     */
     @Test
     void isRectangularTriangle(){
         String triangleType = getTriangleType(driver, "3", "4", "5");
         Assertions.assertEquals(rectangularType, triangleType);
     }
 
+    /**
+     * Ввод данных треугольника с разными сторонами (не прямоугольного)
+     */
     @Test
     void isScaleneTriangle(){
         String triangleType = getTriangleType(driver, "6", "4", "5");
         Assertions.assertEquals(scaleneType, triangleType);
     }
 
+    /**
+     * Ввод во все поля цифры 0
+     */
     @Test
     void allZero(){
         String triangleType = getTriangleType(driver, "0", "0", "0");
         Assertions.assertEquals(notTriangleType, triangleType);
     }
 
+    /**
+     * Ввод во все поля отрицательных чисел
+     */
     @Test
     void allNegativeNumbers(){
         String triangleType = getTriangleType(driver, "-4", "-5", "-6");
         Assertions.assertEquals(notTriangleType, triangleType);
     }
 
+    /**
+     * Проверка определения “Не треугольник”, если одна сторона >= сумме двух других сторон
+     */
     @Test
     void isNotTriangle(){
         String triangleType = getTriangleType(driver, "1", "2", "5");
         Assertions.assertEquals(notTriangleType, triangleType);
     }
 
+    /**
+     * Поле “Сторона А”: ввод цифры с пробелами в начале и в конце
+     */
     @Test
     void spacesBeforeAndAfterNumberA(){
         String triangleType = getTriangleType(driver, "  4  ", "4", "5");
         Assertions.assertEquals(isoscelesType, triangleType);
     }
 
+    /**
+     * Поле “Сторона А”: ввод дроби
+     */
     @Test
     void fractionA(){
         String triangleType = getTriangleType(driver, "3.8", "4", "5");
         Assertions.assertEquals(scaleneType, triangleType);
     }
 
+    /**
+     * Поле “Сторона А”: ввод отрицательного числа
+     */
     @Test
     void negativeNumberA(){
         String triangleType = getTriangleType(driver, "-4", "4", "5");
         Assertions.assertEquals(notTriangleType, triangleType);
     }
 
+    /**
+     * Поле “Сторона Б”: ввод цифры с пробелами в начале и в конце
+     */
     @Test
     void spacesBeforeAndAfterNumberB(){
         String triangleType = getTriangleType(driver, "5", "  4  ", "5");
         Assertions.assertEquals(isoscelesType, triangleType);
     }
 
+    /**
+     * Поле “Сторона Б”: ввод дроби
+     */
     @Test
-    void sractionB(){
+    void fractionB(){
         String triangleType = getTriangleType(driver, "5", "3.8", "5");
         Assertions.assertEquals(isoscelesType, triangleType);
     }
 
+    /**
+     * Поле “Сторона Б”: ввод отрицательного числа
+     */
     @Test
     void negativeNumberB(){
         String triangleType = getTriangleType(driver, "5", "-4", "5");
         Assertions.assertEquals(notTriangleType, triangleType);
     }
 
+    /**
+     * Поле “Сторона В”: ввод цифры с пробелами в начале и в конце
+     */
     @Test
     void spacesBeforeAndAfterNumberV(){
         String triangleType = getTriangleType(driver, "5", "4", "  4  ");
         Assertions.assertEquals(isoscelesType, triangleType);
     }
 
+    /**
+     * Поле “Сторона В”: ввод дроби
+     */
     @Test
     void fractionV(){
         String triangleType = getTriangleType(driver, "5", "4", "3.8");
         Assertions.assertEquals(scaleneType, triangleType);
     }
 
+    /**
+     * Поле “Сторона В”: ввод отрицательного числа
+     */
     @Test
     void negativeNumberV(){
         String triangleType = getTriangleType(driver, "5", "4", "-5");
